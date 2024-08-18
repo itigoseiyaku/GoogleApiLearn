@@ -35,7 +35,7 @@ export default defineConfig({
             },
         }),
     ],
-    base: "GoogleApiLearn",
+    base: "/GoogleApiLearn",
     define: { "process.env": {} },
     resolve: {
         alias: {
