@@ -10,7 +10,6 @@ type State = {
 };
 
 export const useAccountStore = defineStore("Account", {
-  // arrow function recommended for full type inference
   state: (): State => {
     return {
       isLogin: false,

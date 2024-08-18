@@ -495,6 +495,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/google.accounts@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@types/google.accounts@npm:0.0.14"
+  checksum: 10c0/70f8f2e4334df2fff213353530def82ec219ecd49957c0a63aa4612e27e6c94044015d0395d28b47ccc77dbdbb560535b269c8ab722b04e3bc6676fcccceeefb
+  languageName: node
+  linkType: hard
+
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
@@ -866,6 +873,7 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.24.7"
     "@mdi/font": "npm:7.4.47"
+    "@types/google.accounts": "npm:^0.0.14"
     "@types/node": "npm:^20.14.10"
     "@vitejs/plugin-vue": "npm:^5.0.5"
     "@vue/eslint-config-typescript": "npm:^13.0.0"

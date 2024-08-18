@@ -1,40 +1,35 @@
 <script setup lang="ts">
-import { useAccountStore } from "@/store/Account";
+import { onMounted, ref } from "vue";
 
-const accountStore = useAccountStore();
+const buttonDivRef = ref<HTMLDivElement>();
 
-const menuList: { text: string; action: () => void }[] = [
-  {
-    text: "ログアウト",
-    action: () => {
-      accountStore.logout();
-    },
-  },
-];
+function handleCredentialResponse(response: any) {
+  // eslint-disable-next-line no-console
+  console.log("Encoded JWT ID token: " + response.credential);
+}
+onMounted(async () => {
+  if (!buttonDivRef.value) {
+    throw new Error("Google Login Button is not found");
+  }
+
+  globalThis.google.accounts.id.initialize({
+    client_id: import.meta.env.VITE_ENV_CLIENT_ID,
+    callback: handleCredentialResponse,
+  });
+  globalThis.google.accounts.id.renderButton(buttonDivRef.value, {
+    theme: "filled_black",
+    type: "standard",
+  });
+  globalThis.google.accounts.id.prompt(); // also display the One Tap dialog
+});
 </script>
 
 <template>
-  <v-menu v-if="accountStore.isLogin">
-    <template v-slot:activator="{ props: menu }">
-      <v-btn icon="mdi-account" v-bind="menu" />
-    </template>
-
-    <v-card
-      :min-width="250"
-      :title="accountStore.username ?? ''"
-      :subtitle="accountStore.mail ?? ''"
-    >
-      <v-divider />
-      <v-list>
-        <v-list-item
-          v-for="(item, index) in menuList"
-          :key="index"
-          :value="index"
-          @click="item.action"
-        >
-          <v-list-item-title>{{ item.text }}</v-list-item-title>
-        </v-list-item>
-      </v-list></v-card
-    >
-  </v-menu>
+  <div ref="buttonDivRef" class="google-login-button"></div>
 </template>
+
+<style scoped>
+.google-login-button {
+  color-scheme: auto;
+}
+</style>
