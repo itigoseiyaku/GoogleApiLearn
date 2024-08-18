@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppBar from "@/components/Layout/AppBar.vue";
+import AppBar from "@/Layout/AppBar.vue";
 </script>
 
 <template>
